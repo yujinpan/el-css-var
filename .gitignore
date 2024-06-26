@@ -1,0 +1,6 @@
+lib
+node_modules
+.idea
+types
+.vitepress/cache
+.vitepress/dist

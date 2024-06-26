@@ -1,0 +1,11 @@
+/* .vitepress/theme/custom.css */
+:root {
+  --vp-c-green: #84ba64;
+  --vp-c-green-light: #9cda76;
+  --vp-c-green-lighter: #b3fa88;
+  --vp-c-green-dark: #6d9853;
+  --vp-c-green-darker: #466236;
+  --vp-c-green-dimm-1: rgba(132, 186, 100, 0.05);
+  --vp-c-green-dimm-2: rgba(132, 186, 100, 0.2);
+  --vp-c-green-dimm-3: rgba(132, 186, 100, 0.5);
+}
