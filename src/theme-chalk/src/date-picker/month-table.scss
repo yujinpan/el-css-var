@@ -1,4 +1,5 @@
 @import "../common/var";
+@import "../mixins/mixins";
 
 @include b(month-table) {
   font-size: 12px;
