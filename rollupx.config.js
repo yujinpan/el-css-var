@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 module.exports = {
   banner:
     '/*!\n' +
@@ -9,19 +11,17 @@ module.exports = {
     '@': 'src',
   },
 
-  outputDir: 'lib',
-
   formats: [
     {
       format: 'es',
       inputFiles: ['**/*'],
-      outputDir: 'lib/es',
+      outputDir: 'dist/es',
       outputFile: '[name][ext]',
     },
     {
       format: 'cjs',
       inputFiles: ['**/*'],
-      outputDir: 'lib/cjs',
+      outputDir: 'dist//cjs',
       outputFile: '[name][ext]',
     },
   ],

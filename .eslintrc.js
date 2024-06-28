@@ -1,22 +1,17 @@
+/* eslint-env node */
+
 const path = require('path');
 
 module.exports = {
   root: true,
-  env: {
-    node: true,
-  },
-
   extends: [
+    'plugin:vue/essential',
     'eslint:recommended',
-    'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/recommended',
+    '@vue/eslint-config-typescript/recommended',
+    '@vue/eslint-config-prettier',
   ],
-
-  parser: '@typescript-eslint/parser',
-
-  plugins: ['@typescript-eslint', 'prettier', 'import'],
-
   rules: {
+    // prettier https://prettier.io/docs/en/options.html
     // eslint http://eslint.cn/docs/rules/
     'no-debugger': 'error',
     'no-console': 'error',
@@ -26,12 +21,18 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
+        endOfLine: 'auto',
         singleQuote: true,
         arrowParens: 'always',
         semi: true,
         trailingComma: 'all',
       },
     ],
+
+    // vue
+    'vue/multi-word-component-names': 'off',
+    'vue/no-mutating-props': 'off',
+    'vue/no-reserved-component-names': 'off',
 
     // typescript https://typescript-eslint.io/rules/
     '@typescript-eslint/consistent-type-imports': 'error',
@@ -44,6 +45,7 @@ module.exports = {
         },
       },
     ],
+    '@typescript-eslint/ban-ts-comment': 'off',
 
     // import https://github.com/import-js/eslint-plugin-import#rules
     'import/no-useless-path-segments': 'error',
@@ -57,12 +59,43 @@ module.exports = {
           ['type'],
           ['internal', 'parent', 'sibling', 'index'],
         ],
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'internal',
+          },
+          {
+            pattern: '@application/**',
+            group: 'internal',
+          },
+          {
+            pattern: '@index/**',
+            group: 'internal',
+          },
+          {
+            pattern: '@portal/**',
+            group: 'internal',
+          },
+          {
+            pattern: '@login/**',
+            group: 'internal',
+          },
+          {
+            pattern: '@supervision/**',
+            group: 'internal',
+          },
+        ],
         'newlines-between': 'always',
         alphabetize: { order: 'asc' },
       },
     ],
     'import/newline-after-import': 'error',
   },
+
+  plugins: [
+    // https://github.com/import-js/eslint-import-resolver-typescript#configuration
+    'import',
+  ],
 
   settings: {
     // https://github.com/import-js/eslint-import-resolver-typescript#configuration
@@ -79,9 +112,16 @@ module.exports = {
 
   overrides: [
     {
-      files: ['**/*.js'],
+      files: ['src/**/__tests__/*', 'src/**/*.spec.*'],
       rules: {
-        '@typescript-eslint/no-var-requires': 'off',
+        'no-debugger': 'off',
+        'no-console': 'off',
+      },
+    },
+    {
+      files: ['**/*.d.ts'],
+      rules: {
+        '@typescript-eslint/no-empty-interface': 'off',
       },
     },
   ],
