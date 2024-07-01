@@ -1,5 +1,6 @@
 /* GENERATE by v2-generate.js */
 export const DEFAULT_THEME = {
+  '--color-text-white': '#FFFFFF',
   '--color-primary': '#409EFF',
   '--color-white': '#FFFFFF',
   '--color-black': '#000000',

@@ -19,8 +19,20 @@ function generateV2() {
   files.forEach((file) => {
     let content = fs.readFileSync(file).toString();
     if (file.endsWith('.scss')) {
+      if (file.endsWith('var.scss')) {
+        // prepend vars
+        content =
+          `// New vars by v2-generate.js
+// replace font color "$--color-white"
+$--color-text-white: #FFFFFF !default;\n\n` + content;
+      }
+
       content = patchDeprecation(content);
       content = removeExpression(content);
+      content = content.replace(
+        /(font-|\s)color: \$--color-white/g,
+        '$1color: $--color-text-white',
+      );
     }
 
     const distFile = path.join(distPath, path.relative(srcPath, file));
@@ -73,12 +85,8 @@ ${Object.entries(darkVars)
   .map(([key, value]) => `  ${key}: ${value};`)
   .join('\n')}
   
-  .el-button {
-    color: var(--color-text-primary);
-    &:hover,
-    &:focus {
-      color: var(--color-text-primary);
-    }
+  .el-radio__inner::after {
+    background-color: var(--color-text-white);
   }
 }\n`;
 
