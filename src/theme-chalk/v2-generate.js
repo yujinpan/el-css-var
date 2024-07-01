@@ -17,27 +17,38 @@ function generateV2() {
   const files = glob.sync(path.resolve(srcPath, './**/*.*'));
 
   files.forEach((file) => {
-    let content = fs.readFileSync(file).toString();
+    const distFile = path.join(distPath, path.relative(srcPath, file));
+    makeDir.sync(path.dirname(distFile));
+
     if (file.endsWith('.scss')) {
+      let content = fs.readFileSync(file).toString();
+
       if (file.endsWith('var.scss')) {
         // prepend vars
         content =
-          `// New vars by v2-generate.js
+          `// Prepend vars by v2-generate.js
 // replace font color "$--color-white"
 $--color-text-white: #FFFFFF !default;\n\n` + content;
+        // replace vars
+        content = content.replace(
+          '$--checkbox-checked-icon-color: $--fill-base',
+          '$--checkbox-checked-icon-color: $--color-text-white',
+        );
       }
 
       content = patchDeprecation(content);
       content = removeExpression(content);
+
+      // replace vars
       content = content.replace(
         /(font-|\s)color: \$--color-white/g,
         '$1color: $--color-text-white',
       );
-    }
 
-    const distFile = path.join(distPath, path.relative(srcPath, file));
-    makeDir.sync(path.dirname(distFile));
-    fs.writeFileSync(distFile, content);
+      fs.writeFileSync(distFile, content);
+    } else {
+      fs.cpSync(file, distFile);
+    }
   });
 
   // var-css
@@ -48,7 +59,7 @@ $--color-text-white: #FFFFFF !default;\n\n` + content;
 
       const darkVars = {
         '--color-primary': '#409EFF',
-        '--color-white': '#282a2d',
+        '--color-white': '#1b1b1f',
         '--color-black': 'rgba(255, 255, 255, 0.55)',
         // '--color-success': '#67C23A',
         // '--color-warning': '#E6A23C',
@@ -68,7 +79,7 @@ $--color-text-white: #FFFFFF !default;\n\n` + content;
         // '--checkbox-disabled-input-fill': '#edf2fc',
         // '--select-multiple-input-color': '#666',
         // '--select-dropdown-empty-color': '#999',
-        // '--message-background-color': '#edf2fc',
+        '--message-background-color': '#282a2d',
         // '--cascader-tag-background': '#f0f2f5',
         '--datepicker-inner-border-color': 'rgba(255, 255, 255, 0.3)',
         '--datepicker-cell-hover-color': 'rgba(255, 255, 255, 0.3)',
@@ -85,8 +96,48 @@ ${Object.entries(darkVars)
   .map(([key, value]) => `  ${key}: ${value};`)
   .join('\n')}
   
-  .el-radio__inner::after {
+  .el-radio__inner::after,
+  .el-switch__core:after,
+  .el-slider__button {
     background-color: var(--color-text-white);
+  }
+  .el-select .el-tag__close.el-icon-close {
+    background-color: var(--background-color-base);
+  }
+  .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+    background-color: color-mix(in srgb, white 2.5%, var(--color-white));
+  }
+  .el-table--enable-row-hover .el-table__body tr.el-table__row--striped:hover > td.el-table__cell {
+    background-color: var(--background-color-base);
+  }
+  .el-loading-mask,
+  .v-modal {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  .el-menu {
+    &.el-menu--horizontal {
+      border-color: var(--border-color-base);
+    }
+    > .el-menu-item:not(.is-disabled):hover, 
+    > .el-menu-item:not(.is-disabled):focus,
+    > .el-submenu .el-submenu__title:hover {
+      background-color: var(--background-color-base);
+    }
+  }
+  .el-tooltip__popper.is-light {
+    border-color: var(--border-color-base);
+  }
+  .el-tooltip__popper.is-light[x-placement^=top] .popper__arrow {
+    border-top-color: var(--border-color-base);
+  }
+  .el-tooltip__popper.is-light[x-placement^=right] .popper__arrow {
+    border-right-color: var(--border-color-base);
+  }
+  .el-tooltip__popper.is-light[x-placement^=bottom] .popper__arrow {
+    border-bottom-color: var(--border-color-base);
+  }
+  .el-tooltip__popper.is-light[x-placement^=left] .popper__arrow {
+    border-left-color: var(--border-color-base);
   }
 }\n`;
 
@@ -182,7 +233,7 @@ function sassExpressionToCss(expression) {
   );
 
   if (fun === 'mix') {
-    const [mixColor, baseColor, percent] = args.split(', ');
+    const [mixColor, baseColor, percent = '50%'] = args.split(', ');
     return `color-mix(in srgb, ${mixColor} ${percent}, ${baseColor})`;
   } else if (fun === 'rgba') {
     const [color, opacity] = args.split(', ');
