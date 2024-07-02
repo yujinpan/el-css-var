@@ -19,12 +19,12 @@ export type ElThemeOptions = {
  * set global theme
  */
 export const useElTheme = (
-  defaultOptions: ElThemeOptions = {},
+  defaultOptions: Omit<ElThemeOptions, 'updateTheme'> = {},
 ): ElThemeOptions => {
   if (useElTheme['global']) return useElTheme['global'];
 
   const globalStore = Vue.observable<Required<ElThemeOptions>>({
-    theme: '',
+    theme: document.documentElement.classList.contains('dark') ? 'dark' : '',
     base: {},
     dark: {},
     updateTheme: (options: ElThemeOptions = {}) => {
@@ -50,7 +50,7 @@ export function updateElTheme({ theme, base, dark }: ElThemeOptions) {
     updateElTheme['style'] = style;
   }
 
-  style.innerHTML = `:root{${objToCss(base)}}:root .dark{${objToCss(dark)}}`;
+  style.innerHTML = `:root{${objToCss(base)}}.dark{${objToCss(dark)}}`;
 }
 
 /**
@@ -74,7 +74,11 @@ function objToCss(obj: object): string {
 
 function setObj<T extends object>(source: T, target: T): T {
   for (const key in target) {
-    Vue.set(source, key, target[key]);
+    if (typeof target[key] === 'object' && typeof source[key] === 'object') {
+      setObj(source[key] as any, target[key]);
+    } else {
+      Vue.set(source, key, target[key]);
+    }
   }
   return source;
 }
