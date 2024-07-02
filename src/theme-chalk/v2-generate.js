@@ -57,94 +57,17 @@ $--color-text-white: #FFFFFF !default;\n\n` + content;
     (varContent) => {
       const { cssVar, content } = sassVarsToCss(varContent);
 
-      const darkVars = {
-        '--color-primary': '#409EFF',
-        '--color-white': '#1b1b1f',
-        '--color-black': 'rgba(255, 255, 255, 0.55)',
-        // '--color-success': '#67C23A',
-        // '--color-warning': '#E6A23C',
-        // '--color-danger': '#F56C6C',
-        // '--color-info': '#909399',
-        '--color-text-primary': '#e8eaed',
-        '--color-text-regular': 'rgba(255, 255, 255, 0.75)',
-        '--color-text-secondary': 'rgba(255, 255, 255, 0.65)',
-        '--color-text-placeholder': 'rgba(255, 255, 255, 0.55)',
-        '--border-color-base': '#434343',
-        '--border-color-light': 'rgba(255, 255, 255, 0.3)',
-        '--border-color-lighter': 'rgba(255, 255, 255, 0.2)',
-        '--border-color-extra-light': 'rgba(255, 255, 255, 0.1)',
-        '--background-color-base': '#282a2d',
-        // '--font-color-disabled-base': '#bbb',
-        // '--icon-color': '#666',
-        // '--checkbox-disabled-input-fill': '#edf2fc',
-        // '--select-multiple-input-color': '#666',
-        // '--select-dropdown-empty-color': '#999',
-        '--message-background-color': '#282a2d',
-        // '--cascader-tag-background': '#f0f2f5',
-        '--datepicker-inner-border-color': 'rgba(255, 255, 255, 0.3)',
-        '--datepicker-cell-hover-color': 'rgba(255, 255, 255, 0.3)',
-        // '--calendar-selected-background-color': '#F2F8FE',
-        // '--avatar-font-color': '#fff',
-        // '--avatar-background-color': '#C0C4CC',
-        // '--descriptions-item-bordered-label-background': '#fafafa',
-        // '--skeleton-color': '#f2f2f2',
-        // '--skeleton-to-color': '#e6e6e6',
-        // '--svg-monochrome-grey': '#DCDDE0',
-      };
-      const darkVarsContent = `.dark {
-${Object.entries(darkVars)
-  .map(([key, value]) => `  ${key}: ${value};`)
-  .join('\n')}
-  
-  .el-radio__inner::after,
-  .el-switch__core:after,
-  .el-slider__button {
-    background-color: var(--color-text-white);
-  }
-  .el-select .el-tag__close.el-icon-close {
-    background-color: var(--background-color-base);
-  }
-  .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
-    background-color: color-mix(in srgb, white 2.5%, var(--color-white));
-  }
-  .el-table--enable-row-hover .el-table__body tr.el-table__row--striped:hover > td.el-table__cell {
-    background-color: var(--background-color-base);
-  }
-  .el-loading-mask,
-  .v-modal {
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  .el-menu {
-    &.el-menu--horizontal {
-      border-color: var(--border-color-base);
-    }
-    > .el-menu-item:not(.is-disabled):hover, 
-    > .el-menu-item:not(.is-disabled):focus,
-    > .el-submenu .el-submenu__title:hover {
-      background-color: var(--background-color-base);
-    }
-  }
-  .el-tooltip__popper.is-light {
-    border-color: var(--border-color-base);
-  }
-  .el-tooltip__popper.is-light[x-placement^=top] .popper__arrow {
-    border-top-color: var(--border-color-base);
-  }
-  .el-tooltip__popper.is-light[x-placement^=right] .popper__arrow {
-    border-right-color: var(--border-color-base);
-  }
-  .el-tooltip__popper.is-light[x-placement^=bottom] .popper__arrow {
-    border-bottom-color: var(--border-color-base);
-  }
-  .el-tooltip__popper.is-light[x-placement^=left] .popper__arrow {
-    border-left-color: var(--border-color-base);
-  }
-}\n`;
+      const darkVars =
+        fs
+          .readFileSync(path.resolve(distPath, './dark.scss'))
+          .toString()
+          .match(/--[\w-]+: [^;]+/g)
+          ?.reduce((a, b) => {
+            const [key, val] = b.split(': ');
+            return { ...a, [key]: val };
+          }, {}) || [];
 
-      fs.writeFileSync(
-        path.resolve(distPath, './common/var-css.scss'),
-        cssVar + '\n\n' + darkVarsContent,
-      );
+      fs.writeFileSync(path.resolve(distPath, './common/var-css.scss'), cssVar);
 
       updateFileContent(path.resolve(distPath, './base.scss'), (content) => {
         return '@use "./common/var-css.scss";\n' + content;
@@ -202,7 +125,8 @@ function updateFileContent(file, contentCallback) {
 }
 
 function removeExpression(content) {
-  content.match(/(mix\(|rgba\(\$)[^)]*\)/g)?.map((item) => {
+  content.match(/\s(mix\(|rgba\(\$)[^)]*\)/g)?.map((item) => {
+    item = item.trim();
     content = content.replace(item, sassExpressionToCss(item, content));
   });
   return content;

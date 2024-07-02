@@ -1,0 +1,62 @@
+.dark {
+  color-scheme: dark;
+  
+  --color-primary: #409EFF;
+  --color-white: #1b1b1f;
+  --color-black: #A2A3A4;
+  --color-text-primary: #e8eaed;
+  --color-text-regular: #CBCCCC;
+  --color-text-secondary: #B6B7B8;
+  --color-text-placeholder: #A2A3A4;
+  --border-color-base: #434343;
+  --border-color-light: #484848;
+  --border-color-lighter: #535353;
+  --border-color-extra-light: #585858;
+  --background-color-base: #282a2d;
+  --message-background-color: #282a2d;
+  --datepicker-inner-border-color: #6D6F70;
+  --datepicker-cell-hover-color: #6D6F70;
+  
+  .el-radio__inner::after,
+  .el-switch__core:after,
+  .el-slider__button {
+    background-color: var(--color-text-white);
+  }
+  .el-select .el-tag__close.el-icon-close {
+    background-color: var(--background-color-base);
+  }
+  .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+    background-color: color-mix(in srgb, white 2.5%, var(--color-white));
+  }
+  .el-table--enable-row-hover .el-table__body tr.el-table__row--striped:hover > td.el-table__cell {
+    background-color: var(--background-color-base);
+  }
+  .el-loading-mask,
+  .v-modal {
+    background-color: color-mix(in srgb, var(--color-white) 80%, transparent);
+  }
+  .el-menu {
+    &.el-menu--horizontal {
+      border-color: var(--border-color-base);
+    }
+    > .el-menu-item:not(.is-disabled):hover,
+    > .el-menu-item:not(.is-disabled):focus,
+    > .el-submenu .el-submenu__title:hover {
+      background-color: var(--background-color-base);
+    }
+  }
+  .el-tooltip__popper.is-light {
+    border-color: var(--border-color-base);
+    @each $direction in (top, right, bottom, left) {
+      &[x-placement^=#{$direction}] .popper__arrow {
+        border-#{$direction}-color: var(--border-color-base);
+      }
+    }
+  }
+  .el-menu--popup {
+    box-shadow: 0 2px 12px 0 var(--border-color-extra-light);
+  }
+  .el-dialog {
+    box-shadow: 0 1px 3px var(--border-color-extra-light);
+  }
+}
