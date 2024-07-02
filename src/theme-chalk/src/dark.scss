@@ -1,13 +1,12 @@
 .dark {
   color-scheme: dark;
   
-  --color-primary: #409EFF;
   --color-white: #1b1b1f;
   --color-black: #A2A3A4;
   --color-text-primary: #e8eaed;
   --color-text-regular: #CBCCCC;
-  --color-text-secondary: #B6B7B8;
-  --color-text-placeholder: #A2A3A4;
+  --color-text-secondary: #A2A3A4;
+  --color-text-placeholder: #898989;
   --border-color-base: #434343;
   --border-color-light: #484848;
   --border-color-lighter: #535353;
@@ -53,10 +52,17 @@
       }
     }
   }
-  .el-menu--popup {
+  .el-menu--popup,
+  .el-popover {
     box-shadow: 0 2px 12px 0 var(--border-color-extra-light);
   }
   .el-dialog {
     box-shadow: 0 1px 3px var(--border-color-extra-light);
+  }
+  .el-color-picker__trigger {
+    border-color: var(--border-color-base);
+  }
+  .el-color-picker__color {
+    border-color: var(--border-color-lighter);
   }
 }
