@@ -16,8 +16,8 @@
     "postversion": "git push --all && git push --tags",
     "build": "rollupx && node src/theme-chalk/v2-generate.js && mv src/theme-chalk/src-v2/* dist",
     "test": "jest",
-    "docs:dev": "vitepress dev .",
-    "docs:build": "vitepress build ."
+    "docs:dev": "npm run build && vitepress dev .",
+    "docs:build": "npm run build && vitepress build ."
   },
   "author": "yujinpan",
   "devDependencies": {
