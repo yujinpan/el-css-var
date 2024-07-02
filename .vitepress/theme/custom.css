@@ -19,6 +19,10 @@
   border-collapse: separate;
 }
 
+.vp-doc .el-table th, .vp-doc .el-table td {
+  border-width: 0 0 1px;
+}
+
 .vp-doc .el-table tr {
   background-color: var(--color-white);
   border-top: unset;

@@ -8,22 +8,25 @@ export default defineConfig({
 
   themeConfig: {
     logo: '/logo.svg',
-    nav: [{ text: 'Guide', link: '/' }],
+    nav: [
+      {text: 'Guide', link: '/'},
+      {text: 'Theme', link: '/theme'}
+    ],
     search: {
-      provider: 'local',
+      provider: 'local'
     },
     outline: 'deep',
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/yujinpan/el-css-var',
-      },
+        link: 'https://github.com/yujinpan/el-css-var'
+      }
     ],
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2024-present yujinpan',
+      copyright: 'Copyright © 2024-present yujinpan'
     },
-    lastUpdatedText: 'Last Updated',
+    lastUpdatedText: 'Last Updated'
   },
 
   async transformHtml(code) {
@@ -40,7 +43,7 @@ export default defineConfig({
   gtag('config', 'G-S66MPLRFJZ');
 </script>
 </body>
-`,
+`
     );
-  },
+  }
 });
