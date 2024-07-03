@@ -1,4 +1,4 @@
-/* GENERATE by v2-generate.js */
+// Generate by v2-generate.js
 export const DEFAULT_THEME = {
   '--color-text-white': '#FFFFFF',
   '--color-primary': '#409EFF',
