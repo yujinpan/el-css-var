@@ -15,8 +15,8 @@ Instead of element-ui styles.
 ```ts
 // main.ts
 import 'element-ui/packages/theme-chalk/src/index.scss'; // [!code --]
-import 'el-css-var/dist/src/index.scss'; // [!code ++]
-import 'el-css-var/dist/src/dark.scss'; // [!code ++] // optional
+import 'el-css-var/dist/index.scss'; // [!code ++]
+import 'el-css-var/dist/dark.scss'; // [!code ++] // optional
 ```
 
 ### import CSS
@@ -24,8 +24,8 @@ import 'el-css-var/dist/src/dark.scss'; // [!code ++] // optional
 ```ts
 // main.ts
 import 'element-ui/packages/theme-chalk/lib/index.css'; // [!code --]
-import 'el-css-var/dist/lib/index.css'; // [!code ++]
-import 'el-css-var/dist/src/dark.css'; // [!code ++] // optional
+import 'el-css-var/dist/index.css'; // [!code ++]
+import 'el-css-var/dist/dark.css'; // [!code ++] // optional
 ```
 
 ## Custom Theme
@@ -36,7 +36,7 @@ Support use CSS variables and JS API to custom theme.
 
 ```scss
 // index.scss
-@import "el-css-var/dist/lib/index.css";
+@import "el-css-var/dist/index.css";
 
 :root {
   --color-primary: red;
