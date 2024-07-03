@@ -14,16 +14,34 @@ Instead of element-ui styles.
 
 ```ts
 // main.ts
+
+// old
 import 'element-ui/packages/theme-chalk/src/index.scss'; // [!code --]
+
+// new
 import 'el-css-var/dist/index.scss'; // [!code ++]
 import 'el-css-var/dist/dark.scss'; // [!code ++] // optional
+```
+
+And use scss variables:
+
+```scss
+@use 'el-css-var/dist/common/var.scss';
+
+.container {
+  color: var.$color-primary;
+}
 ```
 
 ### import CSS
 
 ```ts
 // main.ts
+
+// old
 import 'element-ui/packages/theme-chalk/lib/index.css'; // [!code --]
+
+// new
 import 'el-css-var/dist/index.css'; // [!code ++]
 import 'el-css-var/dist/dark.css'; // [!code ++] // optional
 ```
