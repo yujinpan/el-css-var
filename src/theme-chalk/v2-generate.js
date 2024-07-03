@@ -34,6 +34,8 @@ $--color-text-white: #FFFFFF !default;\n\n` + content;
           '$--checkbox-checked-icon-color: $--fill-base',
           '$--checkbox-checked-icon-color: $--color-text-white',
         );
+
+        content = sassPrivateVarsToPublic(content);
       }
 
       content = patchDeprecation(content);
@@ -79,7 +81,7 @@ $--color-text-white: #FFFFFF !default;\n\n` + content;
           cssVar
             .match(/[\w-]+:\s?[^;]+/g)
             ?.map((item) => item.split(':').map((item) => item.trim())) || [];
-        return `/* GENERATE by v2-generate.js */
+        return `// Generate by v2-generate.js
 export const DEFAULT_THEME = {
 ${cssVarArr.map(([key, value]) => `  '${key}': '${value}',`).join('\n')}
 };
@@ -141,7 +143,7 @@ function sassVarsToCss(content) {
     content = content.replace(item, item.replace(val, `var(${cssValKey})`));
   });
   return {
-    cssVar: `/* Generate by v2-generate.js */
+    cssVar: `// Generate by v2-generate.js
 :root {
 ${cssVar.map((item) => '  ' + item).join('\n')}
 }`,
@@ -174,4 +176,20 @@ function patchDeprecation(content) {
   });
 
   return content;
+}
+
+function sassPrivateVarsToPublic(content) {
+  const vars =
+    content
+      .match(/\$--[\w-]+:/g)
+      ?.map(
+        (item) =>
+          (item = item.slice(0, -1)) &&
+          `${item.replaceAll('$--', '$')}: ${item};`,
+      ) || [];
+
+  return `${content}
+
+// Generate by v2-generate.js
+${vars.join('\n')}`;
 }
