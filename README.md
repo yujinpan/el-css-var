@@ -73,15 +73,13 @@ import { useElTheme } from 'el-css-var';
 
 export default {
   mounted() {
-    const { updateBase, updateDark } = useElTheme();
+    const elTheme = useElTheme();
 
-    updateBase({
-      '--color-primary': 'red',
-    })
-
-    updateDark({
-      '--color-primary': 'gray',
-    })
+    elTheme.updateTheme({
+      base: {
+        '--color-primary': 'red',
+      }
+    });
   }
 }
 </script>
@@ -101,9 +99,9 @@ import { useElThemeComponent } from 'el-css-var';
 
 export default {
   setup() {
-    const { style, update } = useElThemeComponent();
-    
-    update({
+    const { style, updateTheme } = useElThemeComponent();
+
+    updateTheme({
       '--color-primary': 'red'
     })
     
