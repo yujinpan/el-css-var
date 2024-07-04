@@ -2,6 +2,8 @@
 
 Change el scss variables to css.
 
+[Theme Generator & Preview](https://yujinpan.github.io/el-css-var/theme.html).
+
 ## Usage
 
 ```shell
