@@ -13,10 +13,8 @@
     "types"
   ],
   "scripts": {
-    "publish:beta": "npm version prerelease --preid=beta && npm publish",
-    "publish:patch": "npm version patch && npm publish",
-    "version": "npm run build",
-    "postversion": "git push --all && git push --tags",
+    "publish:beta": "release-ops beta",
+    "publish:patch": "release-ops patch",
     "build": "rollupx && node src/theme-chalk/v2-generate.js && mv src/theme-chalk/src-v2/* dist",
     "test": "jest",
     "docs:dev": "npm run build && vitepress dev .",
@@ -34,6 +32,7 @@
     "eslint-plugin-vue": "^9.0.0",
     "jest": "^29.0.3",
     "prettier": "^2.7.1",
+    "release-ops": "^1.0.1",
     "rollup-plugin-vue": "^5.1.9",
     "rollupx": "^3.1.1",
     "sass": "^1.77.6",
