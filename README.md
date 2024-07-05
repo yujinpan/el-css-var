@@ -123,3 +123,20 @@ export default {
 These variables can all use in css var.
 
 <<< @/src/default-theme.ts
+
+## Migration
+
+Some syntax migration.
+
+### mix
+
+If you use scss `mix` function, you need to replace to `color-mix`:
+
+```scss
+@use "el-css-var/dist/common/var.scss";
+
+.test {
+  color: mix(var.$color-primary, white, 50%); // [!code --]
+  color: color-mix(in srgb, var.$color-primary, white 50%); // [!code ++]
+}
+```
