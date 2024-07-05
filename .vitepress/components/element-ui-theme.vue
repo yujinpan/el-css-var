@@ -69,18 +69,24 @@
 </template>
 
 <script lang="ts" setup>
-import Vue, { computed, ref, nextTick } from 'vue';
+import Vue, { computed, ref, nextTick, onMounted } from 'vue';
+
+import type { ElThemeOptions } from '../../src';
 
 import ComponentsPreview from './components-preview.vue';
 import { useElTheme, DARK_THEME, DEFAULT_THEME } from '../../src';
 
-const theme = useElTheme({ base: DEFAULT_THEME, dark: DARK_THEME });
+// ssr
+const theme = ref({ base: {}, dark: {} } as ElThemeOptions);
+onMounted(() => {
+  theme.value = useElTheme({ base: DEFAULT_THEME, dark: DARK_THEME });
+});
 
 const colorData = computed(() =>
-  Object.entries(theme.base).map(([name, base]) => ({
+  Object.entries(theme.value.base).map(([name, base]) => ({
     name,
     base,
-    dark: theme.dark[name],
+    dark: theme.value.dark[name],
   })),
 );
 

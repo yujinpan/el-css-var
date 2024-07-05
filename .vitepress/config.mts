@@ -29,6 +29,12 @@ export default defineConfig({
     lastUpdatedText: 'Last Updated'
   },
 
+  vite: {
+    ssr: {
+      noExternal: ["element-ui"],
+    },
+  },
+
   async transformHtml(code) {
     return code.replace(
       '</body>',
