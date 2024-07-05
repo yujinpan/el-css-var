@@ -2,8 +2,11 @@
   "name": "el-css-var",
   "version": "1.0.0",
   "description": "ElementUI CSS Variables.",
-  "main": "lib/cjs/index.js",
-  "module": "lib/es/index.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
   "types": "types/index.d.ts",
   "files": [
     "dist",
