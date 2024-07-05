@@ -3,8 +3,9 @@
 module.exports = {
   banner:
     '/*!\n' +
-    ` * el-css-var ${require('./package.json').version}\n` +
-    ` * (c) 2024-present\n` +
+    ` * el-css-var v${require('./package.json').version}\n` +
+    ` * (c) 2024-${new Date().getFullYear()} yujinpan\n` +
+    ' * Released under the MIT License.\n' +
     ' */\n',
 
   aliasConfig: {
