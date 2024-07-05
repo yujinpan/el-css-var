@@ -4,6 +4,9 @@ Change el scss variables to css.
 
 [Theme Generator & Preview](https://yujinpan.github.io/el-css-var/theme.html).
 
+**The library use [color-mix](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix) css function,
+there is a certain compatibility, it is fully supported in 2023.**
+
 ## Usage
 
 ```shell
