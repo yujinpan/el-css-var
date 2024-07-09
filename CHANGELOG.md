@@ -1,3 +1,9 @@
+## [1.0.1-beta.1](https://github.com/yujinpan/el-css-var/compare/v1.0.1-beta.0...v1.0.1-beta.1) (2024-07-09)
+
+### Features
+
+- support custom scss variables for public ([ac0a1a8](https://github.com/yujinpan/el-css-var/commit/ac0a1a8baf36a6b840dfdd234cf9ddad37faea03))
+
 ## 1.0.1-beta.0 (2024-07-05)
 
 ### Bug Fixes
