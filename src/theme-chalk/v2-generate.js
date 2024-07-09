@@ -34,8 +34,6 @@ $--color-text-white: #FFFFFF !default;\n\n` + content;
           '$--checkbox-checked-icon-color: $--fill-base',
           '$--checkbox-checked-icon-color: $--color-text-white',
         );
-
-        content = sassPrivateVarsToPublic(content);
       }
 
       content = patchDeprecation(content);
@@ -95,6 +93,14 @@ ${Object.entries(darkVars)
       });
 
       return content;
+    },
+  );
+
+  // private to public
+  updateFileContent(
+    path.resolve(distPath, './common/var.scss'),
+    (varContent) => {
+      return sassPrivateVarsToPublic(varContent);
     },
   );
 
@@ -185,10 +191,10 @@ function sassPrivateVarsToPublic(content) {
       ?.map(
         (item) =>
           (item = item.slice(0, -1)) &&
-          `${item.replaceAll('$--', '$')}: ${item};`,
+          `${item}: ${item.replace('$--', '$')} !default;`,
       ) || [];
 
-  return `${content}
+  return `${content.replaceAll('$--', '$')}
 
 // Generate by v2-generate.js
 ${vars.join('\n')}`;

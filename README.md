@@ -66,6 +66,15 @@ Support use CSS variables and JS API to custom theme.
 }
 ```
 
+### SCSS variables
+
+```scss
+// index.scss
+@forward "el-css-var/dist/index.scss" with (
+  $color-primary: red,
+);
+```
+
 ### JS API
 
 Support global and component.
