@@ -8,11 +8,11 @@
     <meta name="generator" content="VitePress v5.1.0">
     <link rel="preload stylesheet" href="/el-css-var/assets/style.myoYfeaH.css" as="style">
     
-    <script type="module" src="/el-css-var/assets/app.Chtk4DBB.js"></script>
+    <script type="module" src="/el-css-var/assets/app.3BSODOfq.js"></script>
     <link rel="preload" href="/el-css-var/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="modulepreload" href="/el-css-var/assets/chunks/framework.D1ypaYXg.js">
-    <link rel="modulepreload" href="/el-css-var/assets/chunks/theme.Ce7JsSWm.js">
-    <link rel="modulepreload" href="/el-css-var/assets/index.md.p5cj8hAO.lean.js">
+    <link rel="modulepreload" href="/el-css-var/assets/chunks/theme.56DApYHL.js">
+    <link rel="modulepreload" href="/el-css-var/assets/index.md.Cg5PSNjR.lean.js">
     <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
     <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
   </head>
@@ -42,6 +42,7 @@
 <span class="line"><span>  --color-primary</span><span>: </span><span>red</span><span>;</span></span>
 <span class="line"><span>}</span></span></code></pre></div><h3 id="scss-variables" tabindex="-1">SCSS variables <a href="#scss-variables" aria-label="Permalink to &quot;SCSS variables&quot;" class="header-anchor">​</a></h3><div class="language-scss vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">scss</span><pre class="shiki shiki-themes github-light github-dark vp-code"><code><span class="line"><span>// index.scss</span></span>
 <span class="line"><span>@forward</span><span> &quot;el-css-var/dist/index.scss&quot;</span><span> with</span><span> (</span></span>
+<span class="line"><span>  $font-path</span><span>: </span><span>'~el-css-var/dist/fonts'</span><span>,</span></span>
 <span class="line"><span>  $color-primary</span><span>: </span><span>red</span><span>,</span></span>
 <span class="line"><span>);</span></span></code></pre></div><h3 id="js-api" tabindex="-1">JS API <a href="#js-api" aria-label="Permalink to &quot;JS API&quot;" class="header-anchor">​</a></h3><p>Support global and component.</p><h4 id="global-theme" tabindex="-1">Global Theme <a href="#global-theme" aria-label="Permalink to &quot;Global Theme&quot;" class="header-anchor">​</a></h4><div class="language-vue vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">vue</span><pre class="shiki shiki-themes github-light github-dark vp-code"><code><span class="line"><span>&lt;</span><span>script</span><span>&gt;</span></span>
 <span class="line"><span>import</span><span> { useElTheme } </span><span>from</span><span> 'el-css-var'</span><span>;</span></span>
@@ -137,7 +138,7 @@
 <span class="line diff remove"><span>  color</span><span>: </span><span>mix</span><span>(</span><span>var</span><span>.</span><span>$color-primary</span><span>, </span><span>white</span><span>, </span><span>50</span><span>%</span><span>); </span></span>
 <span class="line diff add"><span>  color</span><span>: </span><span>color-mix</span><span>(</span><span>in</span><span> srgb</span><span>, </span><span>var</span><span>.</span><span>$color-primary</span><span>, </span><span>white</span><span> 50</span><span>%</span><span>); </span></span>
 <span class="line"><span>}</span></span></code></pre></div></div></div></main><footer class="VPDocFooter" data-v-5941af80 data-v-e6f2a212><!----><!----></footer></div></div></div></div></div><footer class="VPFooter" data-v-566314d4 data-v-c0fbb7ec><div class="container" data-v-566314d4><p class="message" data-v-566314d4>Released under the MIT License.</p><p class="copyright" data-v-566314d4>Copyright © 2024-present yujinpan</p></div></footer></div></div>
-    <script>window.__VP_HASH_MAP__=JSON.parse("{\"license.md\":\"Bi2D8VHL\",\"theme.md\":\"z841q8mg\",\"changelog.md\":\"BWAdKQgi\",\"index.md\":\"p5cj8hAO\",\"readme.md\":\"BzUjtKqA\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"el-css-var\",\"description\":\"ElementUI CSS Variables.\",\"base\":\"/el-css-var/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"logo\":\"/logo.svg\",\"nav\":[{\"text\":\"Guide\",\"link\":\"/\"},{\"text\":\"Theme\",\"link\":\"/theme\"}],\"search\":{\"provider\":\"local\"},\"outline\":\"deep\",\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/yujinpan/el-css-var\"}],\"footer\":{\"message\":\"Released under the MIT License.\",\"copyright\":\"Copyright © 2024-present yujinpan\"},\"lastUpdatedText\":\"Last Updated\"},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"changelog.md\":\"DmbRjEPP\",\"license.md\":\"qH4ymsN1\",\"theme.md\":\"DwxisFdC\",\"index.md\":\"Cg5PSNjR\",\"readme.md\":\"kvuJM4Py\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"el-css-var\",\"description\":\"ElementUI CSS Variables.\",\"base\":\"/el-css-var/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"logo\":\"/logo.svg\",\"nav\":[{\"text\":\"Guide\",\"link\":\"/\"},{\"text\":\"Theme\",\"link\":\"/theme\"}],\"search\":{\"provider\":\"local\"},\"outline\":\"deep\",\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/yujinpan/el-css-var\"}],\"footer\":{\"message\":\"Released under the MIT License.\",\"copyright\":\"Copyright © 2024-present yujinpan\"},\"lastUpdatedText\":\"Last Updated\"},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
     
   
 <!-- Google tag (gtag.js) -->
