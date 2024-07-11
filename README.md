@@ -71,6 +71,7 @@ Support use CSS variables and JS API to custom theme.
 ```scss
 // index.scss
 @forward "el-css-var/dist/index.scss" with (
+  $font-path: '~el-css-var/dist/fonts',
   $color-primary: red,
 );
 ```
