@@ -1,6 +1,6 @@
 {
   "name": "el-css-var",
-  "version": "1.0.1-beta.1",
+  "version": "1.0.1-beta.2",
   "description": "ElementUI CSS Variables.",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

@@ -1,3 +1,9 @@
+## [1.0.1-beta.2](https://github.com/yujinpan/el-css-var/compare/v1.0.1-beta.1...v1.0.1-beta.2) (2024-07-12)
+
+### Bug Fixes
+
+- division resolution error ([b438173](https://github.com/yujinpan/el-css-var/commit/b438173d6569187d4bbd4fd6b20df9d9fe0fed13))
+
 ## [1.0.1-beta.1](https://github.com/yujinpan/el-css-var/compare/v1.0.1-beta.0...v1.0.1-beta.1) (2024-07-09)
 
 ### Features
