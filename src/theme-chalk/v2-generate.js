@@ -178,7 +178,7 @@ function sassExpressionToCss(expression) {
 function patchDeprecation(content) {
   content.match(/\/\s?\d+/g)?.map((item) => {
     const [, b] = item.split('/');
-    content = content.replaceAll(item, '* ' + (1 / b.trim()).toFixed(2));
+    content = content.replaceAll(item, '* ' + 1 / b.trim());
   });
 
   return content;
